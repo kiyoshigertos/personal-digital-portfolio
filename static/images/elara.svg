@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="elara-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a051b"/>
+      <stop offset="50%" stop-color="#120d2c"/>
+      <stop offset="100%" stop-color="#030014"/>
+    </linearGradient>
+    <linearGradient id="purple-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="ai-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="380" rx="16" fill="url(#elara-bg)"/>
+
+  <!-- Neural Constellation Network Lines -->
+  <g opacity="0.3" stroke="#818cf8" stroke-width="1">
+    <line x1="80" y1="90" x2="200" y2="150" />
+    <line x1="200" y1="150" x2="300" y2="90" />
+    <line x1="300" y1="90" x2="420" y2="160" />
+    <line x1="420" y1="160" x2="520" y2="100" />
+    <line x1="200" y1="150" x2="250" y2="280" />
+    <line x1="420" y1="160" x2="380" y2="270" />
+    <line x1="250" y1="280" x2="380" y2="270" />
+    <circle cx="80" cy="90" r="4" fill="#a855f7"/>
+    <circle cx="200" cy="150" r="4" fill="#06b6d4"/>
+    <circle cx="300" cy="90" r="4" fill="#818cf8"/>
+    <circle cx="420" cy="160" r="4" fill="#a855f7"/>
+    <circle cx="520" cy="100" r="4" fill="#06b6d4"/>
+    <circle cx="250" cy="280" r="4" fill="#818cf8"/>
+    <circle cx="380" cy="270" r="4" fill="#a855f7"/>
+  </g>
+
+  <!-- Central AI Core Orb -->
+  <circle cx="300" cy="170" r="75" fill="none" stroke="url(#purple-cyan)" stroke-width="3" filter="url(#ai-glow)" stroke-dasharray="8 4"/>
+  <circle cx="300" cy="170" r="55" fill="#18113c" stroke="#a855f7" stroke-width="1.5"/>
+  <circle cx="300" cy="170" r="35" fill="url(#purple-cyan)" opacity="0.85" filter="url(#ai-glow)"/>
+
+  <!-- Waveform Audio / Reasoning Lines inside Core -->
+  <path d="M 275 170 Q 287 150, 300 170 T 325 170" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Title & Slogan -->
+  <text x="300" y="275" fill="#f8fafc" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="22" font-weight="bold" text-anchor="middle" letter-spacing="2">ELARA AI</text>
+  <text x="300" y="302" fill="#c084fc" font-family="'Segoe UI', sans-serif" font-size="13" font-style="italic" text-anchor="middle">"Don't let ELARA fool you. Let ELARA solve you."</text>
+
+  <!-- Status / Architecture Badge -->
+  <g transform="translate(180, 330)">
+    <rect x="0" y="0" width="240" height="28" rx="14" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="120" y="18" fill="#e0e7ff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" text-anchor="middle">AI Assistant &amp; Workflow Architecture</text>
+  </g>
+</svg>

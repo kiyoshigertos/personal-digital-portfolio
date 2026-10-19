@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="primary-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="card-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="380" rx="16" fill="url(#bg2)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <path d="M 0 60 H 600 M 0 120 H 600 M 0 180 H 600 M 0 240 H 600 M 0 300 H 600" stroke="#1e293b" stroke-width="1" stroke-opacity="0.4"/>
+  <path d="M 100 0 V 380 M 200 0 V 380 M 300 0 V 380 M 400 0 V 380 M 500 0 V 380" stroke="#1e293b" stroke-width="1" stroke-opacity="0.4"/>
+
+  <!-- Main POS Terminal Screen Mockup -->
+  <rect x="70" y="45" width="460" height="270" rx="12" fill="url(#card-glass)" stroke="#38bdf8" stroke-width="1.5"/>
+  
+  <!-- POS Top Bar -->
+  <rect x="70" y="45" width="460" height="36" rx="12" fill="#0f172a"/>
+  <circle cx="95" cy="63" r="5" fill="#ef4444"/>
+  <circle cx="112" cy="63" r="5" fill="#f59e0b"/>
+  <circle cx="129" cy="63" r="5" fill="#10b981"/>
+  <text x="300" y="68" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" text-anchor="middle">SmartPOS — Business Point-of-Sale Terminal</text>
+
+  <!-- POS Left Sidebar (Products & Categories) -->
+  <rect x="85" y="95" width="110" height="205" rx="6" fill="#111827" stroke="#1e293b" stroke-width="1"/>
+  <rect x="95" y="107" width="90" height="22" rx="4" fill="url(#primary-blue)"/>
+  <text x="140" y="122" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">ALL ITEMS</text>
+  
+  <rect x="95" y="137" width="90" height="20" rx="4" fill="#1e293b"/>
+  <text x="140" y="151" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="middle">Beverages</text>
+  
+  <rect x="95" y="163" width="90" height="20" rx="4" fill="#1e293b"/>
+  <text x="140" y="177" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="middle">Groceries</text>
+
+  <rect x="95" y="189" width="90" height="20" rx="4" fill="#1e293b"/>
+  <text x="140" y="203" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="middle">Inventory</text>
+
+  <!-- POS Center Grid (Products) -->
+  <g transform="translate(205, 95)">
+    <!-- Item 1 -->
+    <rect x="0" y="0" width="85" height="60" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="42" y="25" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Item #101</text>
+    <text x="42" y="45" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">₱ 45.00</text>
+
+    <!-- Item 2 -->
+    <rect x="95" y="0" width="85" height="60" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="137" y="25" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Item #102</text>
+    <text x="137" y="45" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">₱ 120.00</text>
+
+    <!-- Item 3 -->
+    <rect x="0" y="70" width="85" height="60" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="42" y="95" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Item #103</text>
+    <text x="42" y="115" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">₱ 85.00</text>
+
+    <!-- Item 4 -->
+    <rect x="95" y="70" width="85" height="60" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="137" y="95" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Item #104</text>
+    <text x="137" y="115" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">₱ 250.00</text>
+  </g>
+
+  <!-- POS Right Panel (Cart / Checkout Summary) -->
+  <rect x="395" y="95" width="120" height="205" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+  <text x="455" y="118" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Active Ticket</text>
+  <line x1="405" y1="128" x2="505" y2="128" stroke="#334155" stroke-width="1"/>
+  
+  <text x="405" y="148" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9">Subtotal:</text>
+  <text x="505" y="148" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="end">₱ 500.00</text>
+
+  <text x="405" y="168" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9">Tax:</text>
+  <text x="505" y="168" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="end">₱ 0.00</text>
+
+  <line x1="405" y1="180" x2="505" y2="180" stroke="#334155" stroke-width="1"/>
+  <text x="405" y="198" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">Total:</text>
+  <text x="505" y="198" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="bold" text-anchor="end">₱ 500.00</text>
+
+  <!-- Checkout Button -->
+  <rect x="405" y="240" width="100" height="28" rx="6" fill="#10b981"/>
+  <text x="455" y="258" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">COMPLETE SALE</text>
+
+  <!-- Bottom Badge -->
+  <g transform="translate(160, 330)">
+    <rect x="0" y="0" width="280" height="30" rx="15" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="140" y="20" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" text-anchor="middle">Flutter + Python Client Solutions</text>
+  </g>
+</svg>

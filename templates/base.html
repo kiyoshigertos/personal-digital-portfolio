@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO & Metadata -->
+    <title>{% block title %}{{ profile.name }} | Junior Software Developer &amp; IT Specialist{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Professional portfolio of Michael Angelo Gertos, an aspiring software developer and IT specialist focused on software systems, IoT, robotics, and practical technology solutions.{% endblock %}">
+    <meta name="author" content="{{ profile.name }}">
+    <meta name="keywords" content="Michael Angelo Gertos, Software Developer, IT Specialist, Full-Stack Developer, Flutter, Python, Dart, Kalilangan Bukidnon, Portfolio, Systems Development, IoT, SmartPOS">
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ profile.name }} | Junior Software Developer &amp; IT Specialist">
+    <meta property="og:description" content="Building technology that makes work smarter, faster, and more sustainable.">
+    <meta property="og:url" content="http://127.0.0.1:5000">
+    <meta property="og:image" content="{{ url_for('static', filename='images/profile.jpg') }}">
+    <meta name="theme-color" content="#0b0f19">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-dark text-light antialiased">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Navigation Bar -->
+    <header class="site-header" id="navbar">
+        <div class="container header-container">
+            <a href="{{ url_for('index') }}" class="brand-logo" aria-label="{{ profile.name }} Homepage">
+                <span class="logo-symbol">&lt;/&gt;</span>
+                <span class="logo-text">Michael<span class="accent-dot">.</span>dev</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="desktop-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('index') }}#about" class="nav-link">About</a></li>
+                    <li><a href="{{ url_for('index') }}#skills" class="nav-link">Skills</a></li>
+                    <li><a href="{{ url_for('index') }}#projects" class="nav-link">Projects</a></li>
+                    <li><a href="{{ url_for('index') }}#experience" class="nav-link">Experience</a></li>
+                    <li><a href="{{ url_for('index') }}#education" class="nav-link">Education</a></li>
+                    <li><a href="{{ url_for('index') }}#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="{{ url_for('index') }}#contact" class="nav-link nav-contact-btn">Contact Me</a></li>
+                </ul>
+            </nav>
+
+            <!-- Resume Quick Button & Mobile Menu Toggle -->
+            <div class="header-actions">
+                <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm header-resume-btn" aria-label="GitHub Profile">
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="{{ url_for('download_resume') }}" class="btn btn-outline btn-sm header-resume-btn" download aria-label="Download Resume PDF">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Resume</span>
+                </a>
+                <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <ul class="mobile-nav-list">
+                <li><a href="{{ url_for('index') }}#about" class="mobile-nav-link">About Me</a></li>
+                <li><a href="{{ url_for('index') }}#skills" class="mobile-nav-link">Technical Skills</a></li>
+                <li><a href="{{ url_for('index') }}#projects" class="mobile-nav-link">Featured Projects</a></li>
+                <li><a href="{{ url_for('index') }}#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="{{ url_for('index') }}#education" class="mobile-nav-link">Education</a></li>
+                <li><a href="{{ url_for('index') }}#achievements" class="mobile-nav-link">Achievements &amp; Certs</a></li>
+                <li><a href="{{ url_for('index') }}#contact" class="mobile-nav-link">Get In Touch</a></li>
+                <li class="mobile-resume-wrap">
+                    <a href="{{ url_for('download_resume') }}" class="btn btn-primary btn-block" download>
+                        Download Resume (PDF)
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="{{ url_for('index') }}" class="brand-logo">
+                        <span class="logo-symbol">&lt;/&gt;</span>
+                        <span class="logo-text">{{ profile.name }}</span>
+                    </a>
+                    <p class="footer-tagline">"{{ profile.tagline }}"</p>
+                    <div class="footer-badge">
+                        <span class="pulse-indicator"></span> Kalilangan, Bukidnon, Philippines
+                    </div>
+                </div>
+
+                <div class="footer-links-group">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('index') }}#hero">Home</a></li>
+                        <li><a href="{{ url_for('index') }}#about">About Me</a></li>
+                        <li><a href="{{ url_for('index') }}#skills">Technical Skills</a></li>
+                        <li><a href="{{ url_for('index') }}#projects">Projects</a></li>
+                        <li><a href="{{ url_for('projects_page') }}">All Projects</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-group">
+                    <h4 class="footer-heading">Career &amp; Growth</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('index') }}#experience">Experience Timeline</a></li>
+                        <li><a href="{{ url_for('index') }}#education">Philippine Countryville College</a></li>
+                        <li><a href="{{ url_for('index') }}#achievements">Honors &amp; Certifications</a></li>
+                        <li><a href="{{ url_for('download_resume') }}" download>Download Resume</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact-info">
+                    <h4 class="footer-heading">Direct Contact</h4>
+                    <p class="footer-contact-item">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+                    </p>
+                    <p class="footer-contact-item">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:{{ profile.phone }}">{{ profile.phone }}</a>
+                    </p>
+                    <p class="footer-contact-item">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                        <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer">github.com/kiyoshigertos</a>
+                    </p>
+                    <div class="footer-cta-box">
+                        <span class="status-chip">Open to Opportunities</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; {{ profile.name }}. All rights reserved. Crafted with Python, Flask &amp; Modern Web Architecture.</p>
+                <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">
+                    <span>Back to top</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Interactive Project Quick-View Modal -->
+    <div id="projectModal" class="project-modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button class="modal-close" id="modalCloseBtn" aria-label="Close project modal">&times;</button>
+                <div class="modal-body" id="modalContent">
+                    <!-- Loaded dynamically via JavaScript -->
+                    <div class="modal-loading">
+                        <div class="spinner"></div>
+                        <p>Loading project details...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Interactive Certificate Viewer Lightbox Modal -->
+    <div id="certModal" class="cert-modal" aria-hidden="true" role="dialog" aria-labelledby="certModalTitle">
+        <div class="modal-backdrop" id="certModalBackdrop"></div>
+        <div class="cert-modal-dialog">
+            <div class="cert-modal-content">
+                <button class="modal-close cert-modal-close" id="certModalCloseBtn" aria-label="Close certificate modal">&times;</button>
+                <div class="cert-modal-body" id="certModalContent">
+                    <!-- Loaded dynamically via JavaScript -->
+                    <div class="modal-loading">
+                        <div class="spinner"></div>
+                        <p>Loading certificate credentials...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Toast Notification Element -->
+    <div id="toastNotification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-icon" id="toastIcon"></div>
+        <div class="toast-message" id="toastMessage"></div>
+    </div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

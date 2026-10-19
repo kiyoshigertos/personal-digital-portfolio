@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="space-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090514"/>
+      <stop offset="50%" stop-color="#190a2c"/>
+      <stop offset="100%" stop-color="#020008"/>
+    </linearGradient>
+    <linearGradient id="ship-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="fire-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="380" rx="16" fill="url(#space-bg)"/>
+
+  <!-- Stars / Particles -->
+  <g fill="#ffffff">
+    <circle cx="50" cy="40" r="1" opacity="0.6"/>
+    <circle cx="120" cy="90" r="1.5" opacity="0.8"/>
+    <circle cx="220" cy="30" r="1" opacity="0.4"/>
+    <circle cx="340" cy="70" r="2" opacity="0.9"/>
+    <circle cx="480" cy="50" r="1" opacity="0.7"/>
+    <circle cx="550" cy="110" r="1.5" opacity="0.5"/>
+    <circle cx="80" cy="220" r="1.5" opacity="0.8"/>
+    <circle cx="160" cy="310" r="1" opacity="0.4"/>
+    <circle cx="430" cy="290" r="2" opacity="0.7"/>
+    <circle cx="530" cy="240" r="1" opacity="0.9"/>
+  </g>
+
+  <!-- Asteroid Obstacles -->
+  <g transform="translate(130, 90)">
+    <polygon points="20,0 45,10 55,35 35,55 10,45 0,25" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="25" cy="25" r="4" fill="#1e293b"/>
+    <circle cx="40" cy="35" r="3" fill="#1e293b"/>
+  </g>
+
+  <g transform="translate(420, 80) scale(1.2)">
+    <polygon points="25,5 50,0 60,30 45,55 15,50 5,25" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+    <circle cx="30" cy="25" r="5" fill="#334155"/>
+  </g>
+
+  <g transform="translate(320, 20)">
+    <polygon points="15,0 35,8 40,28 25,40 5,30 0,15" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+  </g>
+
+  <!-- Player Spaceship -->
+  <g transform="translate(270, 160)">
+    <!-- Engine Exhaust Thruster Flame -->
+    <polygon points="25,75 35,75 30,105" fill="url(#fire-grad)"/>
+    <polygon points="27,75 33,75 30,95" fill="#fef08a"/>
+    
+    <!-- Spaceship Body -->
+    <polygon points="30,0 55,65 30,55 5,65" fill="url(#ship-grad)" stroke="#93c5fd" stroke-width="1.5"/>
+    
+    <!-- Cockpit Glass -->
+    <ellipse cx="30" cy="35" rx="6" ry="14" fill="#e0f2fe" opacity="0.9"/>
+    
+    <!-- Wing Guns -->
+    <rect x="2" y="45" width="4" height="15" rx="1" fill="#cbd5e1"/>
+    <rect x="54" y="45" width="4" height="15" rx="1" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Laser Projectiles -->
+  <line x1="274" y1="140" x2="274" y2="100" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="326" y1="140" x2="326" y2="100" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- HUD Overlay -->
+  <g transform="translate(50, 40)">
+    <text x="0" y="0" fill="#38bdf8" font-family="'Courier New', monospace" font-size="12" font-weight="bold">SCORE: 04,820</text>
+    <text x="0" y="16" fill="#10b981" font-family="'Courier New', monospace" font-size="11">SHIELDS: 100%</text>
+  </g>
+
+  <g transform="translate(460, 40)">
+    <text x="0" y="0" fill="#f59e0b" font-family="'Courier New', monospace" font-size="12" font-weight="bold">STAGE 03</text>
+  </g>
+
+  <!-- Title & Description -->
+  <text x="300" y="300" fill="#f8fafc" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="20" font-weight="bold" text-anchor="middle">Space Dodger — 2D Arcade Game</text>
+  <text x="300" y="325" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="12" text-anchor="middle">Game Loops, Collision Mechanics &amp; Spatial Coordinate Logic</text>
+
+  <!-- Bottom Tag -->
+  <g transform="translate(200, 342)">
+    <rect x="0" y="0" width="200" height="24" rx="12" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+    <text x="100" y="16" fill="#c7d2fe" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" text-anchor="middle">Logic &amp; Collision Handling</text>
+  </g>
+</svg>

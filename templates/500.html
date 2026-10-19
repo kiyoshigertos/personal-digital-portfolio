@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}500 - Internal Error | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<section class="section error-page">
+    <div class="container text-center">
+        <div class="error-card">
+            <span class="error-code text-gradient">500</span>
+            <h1 class="error-title">Internal Server Error</h1>
+            <p class="error-desc">An unexpected error occurred while processing the request.</p>
+            <div class="error-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
+                    <span>Return to Home</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

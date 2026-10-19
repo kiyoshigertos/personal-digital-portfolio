@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects &amp; Systems | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<section class="section projects-page-header">
+    <div class="container">
+        <div class="page-title-wrap">
+            <a href="{{ url_for('index') }}#projects" class="back-link">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Back to Home</span>
+            </a>
+            <h1 class="page-title">Featured Projects &amp; Systems</h1>
+            <p class="page-subtitle">A detailed catalogue of client-deployed applications, AI explorations, IoT solutions, and programming projects.</p>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in profile.projects %}
+            <article class="project-card" data-project-id="{{ project.id }}">
+                <div class="project-media">
+                    <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.title }} Preview" class="project-img" loading="lazy">
+                    <div class="project-badge-top">{{ project.badge }}</div>
+                </div>
+
+                <div class="project-content">
+                    <div class="project-meta-row">
+                        <span class="project-category">{{ project.category }}</span>
+                        <span class="project-status">{{ project.status }}</span>
+                    </div>
+
+                    <h2 class="project-title">{{ project.title }}</h2>
+                    <p class="project-type-subtitle">{{ project.type }}</p>
+                    
+                    {% if project.tagline %}
+                    <p class="project-branding-tagline">"{{ project.tagline }}"</p>
+                    {% endif %}
+
+                    <p class="project-description">{{ project.short_description }}</p>
+
+                    {% if project.clients %}
+                    <div class="project-clients-box">
+                        <span class="clients-label">Deployed for Clients:</span>
+                        <div class="client-tags">
+                            {% for client in project.clients %}
+                            <span class="client-tag">{{ client.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="project-tech-stack">
+                        {% for tech in project.technologies %}
+                        <span class="tech-pill">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-sm open-modal-btn" data-slug="{{ project.slug }}">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                            <span>Quick View</span>
+                        </button>
+                        <a href="{{ url_for('project_detail', slug=project.slug) }}" class="btn btn-outline btn-sm">
+                            <span>Detailed Case Study</span>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

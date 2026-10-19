@@ -1,0 +1,727 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.name }} | Junior Software Developer &amp; IT Specialist{% endblock %}
+
+{% block content %}
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="hero" class="hero-section">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-in">
+                <span class="pulse-dot"></span>
+                <span>Available for Development &amp; IT Roles</span>
+            </div>
+
+            <h1 class="hero-title animate-slide-up">
+                Hi, I'm <span class="text-gradient">{{ profile.name }}</span>
+            </h1>
+
+            <!-- Typing Animation Container -->
+            <div class="hero-typing-wrapper animate-slide-up" style="animation-delay: 0.1s;">
+                <span class="typing-prefix">A passionate </span>
+                <span class="typing-text" id="typingText"></span>
+                <span class="typing-cursor">|</span>
+            </div>
+
+            <p class="hero-tagline animate-slide-up" style="animation-delay: 0.2s;">
+                "{{ profile.tagline }}"
+            </p>
+
+            <div class="hero-location-bar animate-slide-up" style="animation-delay: 0.25s;">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>{{ profile.location }}</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="hero-actions animate-slide-up" style="animation-delay: 0.3s;">
+                <a href="#projects" class="btn btn-primary" id="heroViewProjectsBtn">
+                    <span>View My Projects</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="{{ url_for('download_resume') }}" class="btn btn-secondary" id="heroDownloadResumeBtn" download>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Resume</span>
+                </a>
+                <a href="#contact" class="btn btn-outline" id="heroWorkTogetherBtn">
+                    <span>Let's Work Together</span>
+                </a>
+                <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="heroGitHubBtn" aria-label="GitHub Profile">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <!-- Quick Trust Badges -->
+            <div class="hero-highlights animate-slide-up" style="animation-delay: 0.4s;">
+                <div class="highlight-item">
+                    <span class="highlight-icon">&#10003;</span>
+                    <span class="highlight-label">Real Client Deployments (SmartPOS)</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">&#9881;</span>
+                    <span class="highlight-label">Hardware &amp; System Diagnostics</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-icon">&#9733;</span>
+                    <span class="highlight-label">TCC Robotics &amp; Hackathon Champion</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Visual Card -->
+        <div class="hero-visual animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="profile-card-glow"></div>
+            <div class="profile-card">
+                <div class="profile-avatar-container">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Michael Angelo Gertos — Junior Software Developer" class="profile-avatar" id="mainProfilePhoto">
+                    <div class="status-indicator-badge" title="Active &amp; Ready for Projects">
+                        <span class="pulse-indicator"></span> Active
+                    </div>
+                </div>
+
+                <div class="profile-meta">
+                    <h2 class="profile-name">{{ profile.name }}</h2>
+                    <p class="profile-role">BS Information Technology</p>
+                    <p class="profile-org">Torres Capitol College Inc.</p>
+                </div>
+
+                <div class="profile-chips">
+                    <span class="tech-chip">Flutter</span>
+                    <span class="tech-chip">Python</span>
+                    <span class="tech-chip">Dart</span>
+                    <span class="tech-chip">IoT</span>
+                    <span class="tech-chip">IT Systems</span>
+                </div>
+
+                <div class="profile-footer-bar">
+                    <span class="code-badge">&lt;Practical IT Solutions/&gt;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     ABOUT ME SECTION
+     ============================================================ -->
+<section id="about" class="section about-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">About Me</span>
+            <h2 class="section-title">Practical Engineering, Real-World Problem Solving</h2>
+            <p class="section-subtitle">A candid look into my background, development philosophy, and career trajectory.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-main-card reveal-on-scroll">
+                <div class="card-glow"></div>
+                <div class="about-content-body">
+                    <h3 class="about-block-title">
+                        <span class="terminal-prompt">&gt;</span> Who I Am &amp; What Drives Me
+                    </h3>
+                    <p class="lead-text">
+                        {{ profile.about.summary }}
+                    </p>
+                    <p>
+                        {{ profile.about.journey }}
+                    </p>
+                    <p>
+                        {{ profile.about.expansion }}
+                    </p>
+                    <p>
+                        {{ profile.about.mindset }}
+                    </p>
+
+                    <!-- Career Aspirations Card -->
+                    <div class="career-goals-banner">
+                        <div class="goal-item">
+                            <div class="goal-icon">&#127919;</div>
+                            <div class="goal-text">
+                                <strong>Personal Mission:</strong>
+                                <span>"{{ profile.personal_goal }}"</span>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <div class="goal-icon">&#128640;</div>
+                            <div class="goal-text">
+                                <strong>Long-Term Career Goal:</strong>
+                                <span>"{{ profile.professional_goal }}"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-sidebar">
+                <!-- Core Domains & Focus Areas -->
+                <div class="info-card">
+                    <h4 class="card-heading">Key Technical Interests</h4>
+                    <div class="interests-grid">
+                        {% for interest in profile.about.interests %}
+                        <div class="interest-pill">
+                            <span class="interest-dot"></span>
+                            <span>{{ interest }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Professional Traits -->
+                <div class="info-card">
+                    <h4 class="card-heading">Engineering Strengths</h4>
+                    <ul class="strengths-list">
+                        <li>
+                            <strong>Practical Client Experience:</strong> Delivered functional POS and inventory systems to active store owners.
+                        </li>
+                        <li>
+                            <strong>Hands-on Diagnostics:</strong> Experienced in hardware repairs, OS remediation, and component servicing.
+                        </li>
+                        <li>
+                            <strong>Adaptable &amp; Teachable:</strong> Receptive to mentorship, eager to adopt industry-standard workflows.
+                        </li>
+                        <li>
+                            <strong>Composed Under Pressure:</strong> Proven track record in rapid hackathons and competitive robotics.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TECHNICAL SKILLS SECTION (No Fake Percentages)
+     ============================================================ -->
+<section id="skills" class="section skills-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Technical Arsenal</span>
+            <h2 class="section-title">Skills, Tools &amp; Core Competencies</h2>
+            <p class="section-subtitle">Organized by architectural domain. Authentic capabilities without arbitrary percentages.</p>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="skills-filter-nav" role="tablist" aria-label="Skill categories">
+            <button class="filter-btn active" data-category="all" role="tab" aria-selected="true">All Domains</button>
+            <button class="filter-btn" data-category="programming" role="tab" aria-selected="false">Programming &amp; Mobile</button>
+            <button class="filter-btn" data-category="database" role="tab" aria-selected="false">Databases</button>
+            <button class="filter-btn" data-category="tools" role="tab" aria-selected="false">Dev Tools &amp; IDEs</button>
+            <button class="filter-btn" data-category="it-specialist" role="tab" aria-selected="false">IT &amp; Diagnostics</button>
+            <button class="filter-btn" data-category="learning" role="tab" aria-selected="false">Currently Learning</button>
+        </div>
+
+        <!-- Skills Grid Container -->
+        <div class="skills-showcase" id="skillsContainer">
+            <!-- Programming Category -->
+            {% for skill in profile.skills.programming %}
+            <div class="skill-card reveal-on-scroll" data-domain="programming">
+                <div class="skill-header">
+                    <span class="skill-category-tag">Core Development</span>
+                    <span class="skill-domain-badge">{{ skill.category }}</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag">&#10003; Active Stack</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Mobile Development -->
+            {% for skill in profile.skills.mobile %}
+            <div class="skill-card reveal-on-scroll" data-domain="programming">
+                <div class="skill-header">
+                    <span class="skill-category-tag">Mobile &amp; Multi-Platform</span>
+                    <span class="skill-domain-badge">{{ skill.category }}</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag">&#10003; Client Tested</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Databases -->
+            {% for skill in profile.skills.database %}
+            <div class="skill-card reveal-on-scroll" data-domain="database">
+                <div class="skill-header">
+                    <span class="skill-category-tag">Data Persistence</span>
+                    <span class="skill-domain-badge">{{ skill.category }}</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag">&#10003; Production Schema</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Dev Tools -->
+            {% for skill in profile.skills.tools %}
+            <div class="skill-card reveal-on-scroll" data-domain="tools">
+                <div class="skill-header">
+                    <span class="skill-category-tag">Development Workflow</span>
+                    <span class="skill-domain-badge">{{ skill.category }}</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag">&#10003; Daily Tooling</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Other IT Specialist Skills -->
+            {% for skill in profile.skills.it_specialist %}
+            <div class="skill-card reveal-on-scroll" data-domain="it-specialist">
+                <div class="skill-header">
+                    <span class="skill-category-tag">IT &amp; Diagnostics</span>
+                    <span class="skill-domain-badge">{{ skill.category }}</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag">&#10003; Field Experience</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Currently Learning -->
+            {% for skill in profile.skills.learning %}
+            <div class="skill-card skill-card-learning reveal-on-scroll" data-domain="learning">
+                <div class="skill-header">
+                    <span class="skill-category-tag learning-tag">Continuous Growth</span>
+                    <span class="skill-domain-badge">Expanding</span>
+                </div>
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <div class="skill-footer">
+                    <span class="skill-status-tag learning-status-tag">&#8635; In Progress</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FEATURED PROJECTS SECTION
+     ============================================================ -->
+<section id="projects" class="section projects-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Featured Projects</span>
+            <h2 class="section-title">Built for Real Clients &amp; Exploration</h2>
+            <p class="section-subtitle">Real-world software systems, IoT solutions, AI prototypes, and programming demonstrations.</p>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in profile.projects %}
+            <article class="project-card reveal-on-scroll" data-project-id="{{ project.id }}">
+                <div class="project-media">
+                    <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.title }} Preview" class="project-img" loading="lazy">
+                    <div class="project-badge-top">{{ project.badge }}</div>
+                </div>
+
+                <div class="project-content">
+                    <div class="project-meta-row">
+                        <span class="project-category">{{ project.category }}</span>
+                        <span class="project-status">{{ project.status }}</span>
+                    </div>
+
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-type-subtitle">{{ project.type }}</p>
+                    
+                    {% if project.tagline %}
+                    <p class="project-branding-tagline">"{{ project.tagline }}"</p>
+                    {% endif %}
+
+                    <p class="project-description">{{ project.short_description }}</p>
+
+                    <!-- Client Showcase if applicable -->
+                    {% if project.clients %}
+                    <div class="project-clients-box">
+                        <span class="clients-label">Deployed for Clients:</span>
+                        <div class="client-tags">
+                            {% for client in project.clients %}
+                            <span class="client-tag">{{ client.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Tech Stack Pills -->
+                    <div class="project-tech-stack">
+                        {% for tech in project.technologies %}
+                        <span class="tech-pill">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Project Actions -->
+                    <div class="project-actions">
+                        <button class="btn btn-primary btn-sm open-modal-btn" data-slug="{{ project.slug }}">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                            <span>Quick Overview</span>
+                        </button>
+                        <a href="{{ url_for('project_detail', slug=project.slug) }}" class="btn btn-outline btn-sm">
+                            <span>Full Case Study</span>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE TIMELINE SECTION
+     ============================================================ -->
+<section id="experience" class="section experience-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Practical Experience</span>
+            <h2 class="section-title">Client Systems &amp; Technical Service</h2>
+            <p class="section-subtitle">Real-world client software deliveries and hands-on computer hardware &amp; software diagnostics.</p>
+        </div>
+
+        <div class="timeline-container">
+            {% for exp in profile.experience %}
+            <div class="timeline-card reveal-on-scroll">
+                <div class="timeline-marker"></div>
+                <div class="timeline-body">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="timeline-badge">{{ exp.type }}</span>
+                            <h3 class="timeline-role">{{ exp.role }}</h3>
+                            <h4 class="timeline-company">{{ exp.company }} &bull; <span class="text-muted">{{ exp.location }}</span></h4>
+                        </div>
+                        <span class="timeline-period">{{ exp.period }}</span>
+                    </div>
+
+                    <p class="timeline-highlight"><strong>Key Focus:</strong> {{ exp.highlight }}</p>
+
+                    {% if exp.clients %}
+                    <div class="timeline-clients">
+                        <strong>Active Store Deployments:</strong>
+                        <div class="client-pills">
+                            {% for c in exp.clients %}
+                            <span class="client-pill">{{ c }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <ul class="timeline-responsibilities">
+                        {% for resp in exp.responsibilities %}
+                        <li>{{ resp }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     EDUCATION & LEADERSHIP SECTION
+     ============================================================ -->
+<section id="education" class="section education-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Academic Foundation</span>
+            <h2 class="section-title">Education &amp; Departmental Leadership</h2>
+            <p class="section-subtitle">Formal studies in Information Technology at Torres Capitol College, Inc. (formerly Philippine Countryville College, Maramag, Bukidnon)</p>
+        </div>
+
+        <div class="education-grid">
+            <div class="education-card reveal-on-scroll">
+                <div class="card-glow"></div>
+                <div class="edu-badge">{{ profile.education.status }}</div>
+                <h3 class="edu-degree">{{ profile.education.degree }}</h3>
+                <h4 class="edu-institution">{{ profile.education.institution }}</h4>
+                <p class="edu-institution-alt">{{ profile.education.institution_alt }}</p>
+                <p class="edu-period">Academic Period: <strong>{{ profile.education.period }}</strong></p>
+                <div class="edu-leadership">
+                    <span class="leadership-tag">&#9873; Department Leadership</span>
+                    <p class="leadership-desc">{{ profile.education.leadership }}</p>
+                </div>
+            </div>
+
+            <div class="academic-honors-card reveal-on-scroll reveal-delay-2">
+                <h4 class="honors-title">Scholastic Distinctions &amp; Academic Honors</h4>
+                <div class="honors-list">
+                    {% for honor in profile.education.academic_achievements %}
+                    <div class="honor-item">
+                        <div class="honor-icon">&#127941;</div>
+                        <div class="honor-text">{{ honor }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     VERIFIED CREDENTIALS & CERTIFICATES GALLERY
+     ============================================================ -->
+<section id="achievements" class="section achievements-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Verified Credentials</span>
+            <h2 class="section-title">Certifications, Honors &amp; Awards</h2>
+            <p class="section-subtitle">Authentic national certifications, consecutive Dean's list honors, technical defenses, and competitive championships.</p>
+        </div>
+
+        <!-- Credentials Category Filter Nav -->
+        <div class="certs-filter-nav" role="tablist" aria-label="Credential categories">
+            <button class="cert-filter-btn active" data-filter="all" role="tab" aria-selected="true">
+                <span>All Credentials</span>
+                <span class="filter-count">{{ profile.certifications|length + profile.achievements|length }}</span>
+            </button>
+            <button class="cert-filter-btn" data-filter="national" role="tab" aria-selected="false">
+                <span>National Certifications (TESDA)</span>
+                <span class="filter-count">1</span>
+            </button>
+            <button class="cert-filter-btn" data-filter="academic" role="tab" aria-selected="false">
+                <span>Academic Honors (Dean's List)</span>
+                <span class="filter-count">4</span>
+            </button>
+            <button class="cert-filter-btn" data-filter="seminar" role="tab" aria-selected="false">
+                <span>Seminars &amp; Defenses (DICT/PCC)</span>
+                <span class="filter-count">3</span>
+            </button>
+            <button class="cert-filter-btn" data-filter="competition" role="tab" aria-selected="false">
+                <span>Competitions &amp; Awards</span>
+                <span class="filter-count">{{ profile.achievements|length }}</span>
+            </button>
+        </div>
+
+        <!-- Credentials Gallery Showcase -->
+        <div class="certs-gallery-grid" id="certsContainer">
+            <!-- 1. Certified Qualifications & Honors -->
+            {% for cert in profile.certifications %}
+            <article class="cert-showcase-card reveal-on-scroll" data-credential-type="{{ cert.category }}" data-cert-id="{{ cert.id }}">
+                {% if cert.image %}
+                <div class="cert-media-wrap">
+                    <img src="{{ url_for('static', filename='images/' + cert.image) }}" alt="{{ cert.title }} Preview" class="cert-thumbnail" loading="lazy">
+                    <div class="cert-media-overlay">
+                        <button class="btn btn-sm btn-primary open-cert-modal-btn" data-cert-id="{{ cert.id }}" aria-label="View {{ cert.short_title }} certificate in full size">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                            <span>View Full Certificate</span>
+                        </button>
+                    </div>
+                    <span class="cert-badge-floating">{{ cert.badge }}</span>
+                </div>
+                {% else %}
+                <div class="cert-media-wrap cert-media-fallback">
+                    <div class="cert-fallback-icon">&#128220;</div>
+                    <span class="cert-badge-floating">{{ cert.badge }}</span>
+                </div>
+                {% endif %}
+
+                <div class="cert-card-content">
+                    <div class="cert-meta-row">
+                        <span class="cert-type-pill">{{ cert.category_label }}</span>
+                        <span class="cert-year-tag">{{ cert.year }}</span>
+                    </div>
+
+                    <h3 class="cert-card-title">{{ cert.title }}</h3>
+                    <p class="cert-card-issuer">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        <span>{{ cert.issuer }}</span>
+                    </p>
+
+                    {% if cert.gwa %}
+                    <div class="cert-highlight-banner">
+                        <span class="highlight-star">&#9733;</span>
+                        <span>Academic Achievement: <strong>{{ cert.gwa }}</strong></span>
+                    </div>
+                    {% endif %}
+
+                    {% if cert.cert_no %}
+                    <div class="cert-number-banner">
+                        <span class="cert-no-label">Certificate No:</span>
+                        <span class="cert-no-val">{{ cert.cert_no }}</span>
+                        {% if cert.validity %}
+                        <span class="cert-validity-tag">&#10003; {{ cert.validity }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <p class="cert-card-desc">{{ cert.highlight }}</p>
+
+                    {% if cert.skills_covered %}
+                    <div class="cert-competency-chips">
+                        {% for skill in cert.skills_covered %}
+                        <span class="competency-chip">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div class="cert-card-footer">
+                        {% if cert.image %}
+                        <button class="btn btn-outline btn-sm btn-block open-cert-modal-btn" data-cert-id="{{ cert.id }}">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                            <span>Inspect Official Certificate</span>
+                        </button>
+                        {% else %}
+                        <span class="text-muted text-sm">&#10003; Verified Community Record</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+
+            <!-- 2. Competitive Championships & Awards -->
+            {% for ach in profile.achievements %}
+            <article class="cert-showcase-card cert-award-card reveal-on-scroll" data-credential-type="competition" data-cert-id="{{ ach.id }}">
+                <div class="cert-media-wrap cert-award-media">
+                    <div class="award-trophy-symbol">&#127942;</div>
+                    <span class="cert-badge-floating award-badge-floating">1st Place Champion</span>
+                </div>
+
+                <div class="cert-card-content">
+                    <div class="cert-meta-row">
+                        <span class="cert-type-pill award-pill">Competition Championship</span>
+                        <span class="cert-year-tag">{{ ach.year }}</span>
+                    </div>
+
+                    <h3 class="cert-card-title">{{ ach.title }}</h3>
+                    <p class="cert-card-issuer">
+                        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        <span>{{ ach.organization }}</span>
+                    </p>
+
+                    <p class="cert-card-desc">{{ ach.description }}</p>
+
+                    <div class="award-proof-footer">
+                        <span class="award-verified-tag">&#9733; 1st Place Institutional Victory</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT SECTION
+     ============================================================ -->
+<section id="contact" class="section contact-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Get In Touch</span>
+            <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+            <p class="section-subtitle">Have a project, job opportunity, or technical inquiry? Reach out directly.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Contact Information Sidebar -->
+            <div class="contact-info-panel">
+                <div class="contact-meta-card">
+                    <h3 class="info-panel-title">Direct Information</h3>
+                    <p class="info-panel-desc">
+                        I am open to software development opportunities, freelance systems projects, and technical roles.
+                    </p>
+
+                    <div class="contact-detail-items">
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div class="contact-item-text">
+                                <span class="contact-label">Email Address</span>
+                                <a href="mailto:{{ profile.email }}" class="contact-value">{{ profile.email }}</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div class="contact-item-text">
+                                <span class="contact-label">Phone / Mobile</span>
+                                <a href="tel:{{ profile.phone }}" class="contact-value">{{ profile.phone }}</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div class="contact-item-text">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">{{ profile.location }}</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </div>
+                            <div class="contact-item-text">
+                                <span class="contact-label">GitHub Profile</span>
+                                <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" class="contact-value">github.com/kiyoshigertos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-resume-cta">
+                        <p class="cta-notice">Need an official copy of my credentials?</p>
+                        <a href="{{ url_for('download_resume') }}" class="btn btn-outline btn-block" download>
+                            Download Full Resume (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Functional Contact Form -->
+            <div class="contact-form-panel">
+                <form id="contactForm" class="contact-form" novalidate>
+                    <h3 class="form-title">Send a Message</h3>
+                    <p class="form-subtitle">Messages are saved to the backend database and acknowledged immediately.</p>
+
+                    <div class="form-group">
+                        <label for="contactName" class="form-label">Full Name <span class="text-accent">*</span></label>
+                        <input type="text" id="contactName" name="name" class="form-control" placeholder="e.g. Juan dela Cruz" required>
+                        <span class="form-error-msg" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail" class="form-label">Email Address <span class="text-accent">*</span></label>
+                        <input type="email" id="contactEmail" name="email" class="form-control" placeholder="e.g. name@example.com" required>
+                        <span class="form-error-msg" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactSubject" class="form-label">Subject / Purpose</label>
+                        <input type="text" id="contactSubject" name="subject" class="form-control" placeholder="e.g. Project Inquiry / Opportunity">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMessage" class="form-label">Your Message <span class="text-accent">*</span></label>
+                        <textarea id="contactMessage" name="message" rows="5" class="form-control" placeholder="Tell me about your project, idea, or questions..." required></textarea>
+                        <span class="form-error-msg" id="messageError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block submit-btn" id="contactSubmitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

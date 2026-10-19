@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}404 - Page Not Found | {{ profile.name }}{% endblock %}
+
+{% block content %}
+<section class="section error-page">
+    <div class="container text-center">
+        <div class="error-card">
+            <span class="error-code text-gradient">404</span>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-desc">The requested resource or project route does not exist or has been moved.</p>
+            <div class="error-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span>Return to Home</span>
+                </a>
+                <a href="{{ url_for('projects_page') }}" class="btn btn-outline">
+                    <span>Explore Projects</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} | Project Case Study | {{ profile.name }}{% endblock %}
+
+{% block meta_description %}{{ project.short_description }}{% endblock %}
+
+{% block content %}
+<article class="project-detail-page">
+    <!-- Header Banner -->
+    <section class="project-hero-banner">
+        <div class="container">
+            <a href="{{ url_for('index') }}#projects" class="back-link">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Back to All Projects</span>
+            </a>
+
+            <div class="project-hero-meta">
+                <span class="project-badge-top">{{ project.badge }}</span>
+                <span class="project-category">{{ project.category }}</span>
+                <span class="project-status">{{ project.status }}</span>
+            </div>
+
+            <h1 class="project-detail-title">{{ project.title }}</h1>
+            <p class="project-detail-type">{{ project.type }}</p>
+
+            {% if project.tagline %}
+            <div class="project-tagline-quote">
+                <blockquote>"{{ project.tagline }}"</blockquote>
+                {% if project.branding_note %}
+                <p class="branding-note-sub"><span class="highlight-info">&#9432; Branding Context:</span> {{ project.branding_note }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Main Detail Content -->
+    <section class="section project-detail-body">
+        <div class="container project-layout-grid">
+            <!-- Left Main Column -->
+            <div class="project-main-info">
+                <!-- Visual / Showcase Media -->
+                <div class="detail-media-card">
+                    <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.title }} Interface Architecture" class="detail-banner-img">
+                </div>
+
+                <!-- Problem Statement -->
+                <div class="detail-content-card">
+                    <h2 class="detail-section-heading">
+                        <span class="heading-icon">&#9888;</span> Problem &amp; Challenge
+                    </h2>
+                    <p class="detail-paragraph">{{ project.problem }}</p>
+                </div>
+
+                <!-- Solution & Engineering Approach -->
+                <div class="detail-content-card">
+                    <h2 class="detail-section-heading">
+                        <span class="heading-icon">&#10004;</span> The Solution &amp; Architecture
+                    </h2>
+                    <p class="detail-paragraph">{{ project.solution }}</p>
+                </div>
+
+                <!-- Features Breakdown (or Implemented vs Planned vs Experimental for ELARA) -->
+                {% if project.feature_breakdown %}
+                <div class="detail-content-card">
+                    <h2 class="detail-section-heading">
+                        <span class="heading-icon">&#9881;</span> Architecture &amp; Feature Lifecycle
+                    </h2>
+                    <p class="lifecycle-note">Features are structured clearly by development stage:</p>
+
+                    <!-- Implemented -->
+                    <div class="feature-stage-block stage-implemented">
+                        <h3 class="stage-title">
+                            <span class="stage-dot dot-green"></span> Implemented Features
+                        </h3>
+                        <ul class="feature-checklist">
+                            {% for feat in project.feature_breakdown.implemented %}
+                            <li>{{ feat }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Planned -->
+                    <div class="feature-stage-block stage-planned">
+                        <h3 class="stage-title">
+                            <span class="stage-dot dot-blue"></span> Planned Features
+                        </h3>
+                        <ul class="feature-checklist">
+                            {% for feat in project.feature_breakdown.planned %}
+                            <li>{{ feat }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Experimental -->
+                    <div class="feature-stage-block stage-experimental">
+                        <h3 class="stage-title">
+                            <span class="stage-dot dot-purple"></span> Experimental / Research Concepts
+                        </h3>
+                        <ul class="feature-checklist">
+                            {% for feat in project.feature_breakdown.experimental %}
+                            <li>{{ feat }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% elif project.key_features %}
+                <div class="detail-content-card">
+                    <h2 class="detail-section-heading">
+                        <span class="heading-icon">&#9881;</span> Key Capabilities &amp; Features
+                    </h2>
+                    <ul class="feature-checklist">
+                        {% for feat in project.key_features %}
+                        <li>{{ feat }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Clients Section if Client Project -->
+                {% if project.clients %}
+                <div class="detail-content-card">
+                    <h2 class="detail-section-heading">
+                        <span class="heading-icon">&#128188;</span> Client Deployments
+                    </h2>
+                    <p class="detail-paragraph">SmartPOS has been actively delivered and utilized for operations by the following businesses:</p>
+                    <div class="clients-detail-grid">
+                        {% for client in project.clients %}
+                        <div class="client-detail-card">
+                            <h3 class="client-name">{{ client.name }}</h3>
+                            <p class="client-detail-text">{{ client.detail }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Sidebar Meta -->
+            <aside class="project-sidebar">
+                <div class="sidebar-meta-card">
+                    <h3 class="sidebar-title">Project Metadata</h3>
+
+                    <div class="sidebar-meta-item">
+                        <span class="meta-label">My Role</span>
+                        <p class="meta-val">{{ project.my_role }}</p>
+                    </div>
+
+                    <div class="sidebar-meta-item">
+                        <span class="meta-label">Current Status</span>
+                        <p class="meta-val highlight-val">{{ project.status }}</p>
+                    </div>
+
+                    {% if project.target_devices %}
+                    <div class="sidebar-meta-item">
+                        <span class="meta-label">Supported Viewports</span>
+                        <div class="device-chips">
+                            {% for dev in project.target_devices %}
+                            <span class="device-chip">{{ dev }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="sidebar-meta-item">
+                        <span class="meta-label">Technologies Used</span>
+                        <div class="tech-tags-list">
+                            {% for tech in project.technologies %}
+                            <span class="tech-pill">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if project.technical_specs %}
+                    <div class="sidebar-meta-item">
+                        <span class="meta-label">Technical Specs &amp; Placeholders</span>
+                        <ul class="specs-list">
+                            {% for key, val in project.technical_specs.items() %}
+                            <li><strong>{{ key|capitalize }}:</strong> {{ val }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    <!-- Repositories / Links -->
+                    <div class="sidebar-meta-item links-item">
+                        <span class="meta-label">Source &amp; Demonstration</span>
+                        <p class="link-placeholder-text"><strong>Repository:</strong> {{ project.github_url }}</p>
+                        <p class="link-placeholder-text"><strong>Demo:</strong> {{ project.demo_url }}</p>
+                    </div>
+
+                    <div class="sidebar-cta">
+                        <a href="{{ url_for('index') }}#contact" class="btn btn-primary btn-block">
+                            Discuss This Project
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+</article>
+{% endblock %}
