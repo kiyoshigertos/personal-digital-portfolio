@@ -8,7 +8,12 @@ import shutil
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify, send_from_directory, abort
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates'),
+    static_folder=os.path.join(BASE_DIR, 'static')
+)
 
 _secret_key = os.environ.get('SECRET_KEY')
 if not _secret_key:
@@ -523,6 +528,8 @@ PROFILE_DATA = {
 
 # Routes
 @app.route('/')
+@app.route('/api/index')
+@app.route('/api/index.py')
 def index():
     return render_template('index.html', profile=PROFILE_DATA)
 

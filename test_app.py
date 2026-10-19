@@ -104,6 +104,31 @@ class PortfolioAppTestCase(unittest.TestCase):
         self.assertIsNotNone(vercel_app)
         self.assertEqual(vercel_app.name, 'app')
 
+    def test_homepage_vercel_rewrite_aliases(self):
+        """Test that /api/index and /api/index.py directly serve homepage without 404."""
+        for path in ['/api/index', '/api/index.py']:
+            response = self.client.get(path)
+            self.assertEqual(response.status_code, 200, f"Route alias failed: {path}")
+            self.assertIn(b'Michael Angelo Gertos', response.data)
+            self.assertNotIn(b'Page Not Found', response.data)
+
+    def test_vercel_path_middleware_prefix_stripping(self):
+        """Test that VercelPathMiddleware strips prefixes from PATH_INFO on sub-routes."""
+        from api.index import app as vercel_app
+        test_client = vercel_app.test_client()
+        # Test prefixed sub-routes
+        res1 = test_client.get('/api/index/projects')
+        self.assertEqual(res1.status_code, 200)
+        self.assertIn(b'Featured Projects', res1.data)
+
+        res2 = test_client.get('/api/index.py/project/smartpos')
+        self.assertEqual(res2.status_code, 200)
+        self.assertIn(b'Project Case Study', res2.data)
+
+        res3 = test_client.get('/api/index/api/projects')
+        self.assertEqual(res3.status_code, 200)
+        self.assertIn(b'SmartPOS', res3.data)
+
     def test_404_error_page(self):
         response = self.client.get('/invalid-page-does-not-exist')
         self.assertEqual(response.status_code, 404)
