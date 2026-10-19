@@ -3,6 +3,8 @@ import sqlite3
 import warnings
 import threading
 import webbrowser
+import tempfile
+import shutil
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify, send_from_directory, abort
 
@@ -12,16 +14,46 @@ _secret_key = os.environ.get('SECRET_KEY')
 if not _secret_key:
     warnings.warn(
         "SECRET_KEY is not set in environment variables. "
-        "Using the insecure default fallback — DO NOT use this in production!",
+        "Using the default fallback key. Set SECRET_KEY in Vercel project settings for production.",
         stacklevel=1
     )
     _secret_key = 'michael-gertos-portfolio-key-2026'
 app.config['SECRET_KEY'] = _secret_key
 
-DATABASE_PATH = os.path.join(os.path.dirname(__file__), 'database', 'portfolio.db')
+def _get_database_path():
+    # Allow overriding via explicit environment variable
+    env_path = os.environ.get('DATABASE_PATH')
+    if env_path:
+        return env_path
+
+    # On Vercel or AWS Lambda serverless runtimes, the deployment filesystem is read-only.
+    # Writable temporary storage must use the system temp directory.
+    if os.environ.get('VERCEL') or os.environ.get('AWS_LAMBDA_FUNCTION_NAME') or os.environ.get('NOW_REGION'):
+        return os.path.join(tempfile.gettempdir(), 'portfolio.db')
+
+    # Local development default inside workspace database directory
+    local_dir = os.path.join(os.path.dirname(__file__), 'database')
+    try:
+        os.makedirs(local_dir, exist_ok=True)
+        test_file = os.path.join(local_dir, '.write_test')
+        with open(test_file, 'a') as f:
+            pass
+        os.remove(test_file)
+        return os.path.join(local_dir, 'portfolio.db')
+    except (OSError, PermissionError):
+        return os.path.join(tempfile.gettempdir(), 'portfolio.db')
+
+DATABASE_PATH = _get_database_path()
 
 def get_db_connection():
     os.makedirs(os.path.dirname(DATABASE_PATH), exist_ok=True)
+    seed_db = os.path.join(os.path.dirname(__file__), 'database', 'portfolio.db')
+    # In serverless environments, if a pre-existing database file exists, copy it to temp
+    if DATABASE_PATH != seed_db and os.path.exists(seed_db) and not os.path.exists(DATABASE_PATH):
+        try:
+            shutil.copyfile(seed_db, DATABASE_PATH)
+        except Exception:
+            pass
     conn = sqlite3.connect(DATABASE_PATH)
     conn.row_factory = sqlite3.Row
     return conn
@@ -579,6 +611,11 @@ def download_resume():
     # If the file hasn't been placed, redirect or display friendly notice
     abort(404)
 
+@app.route('/favicon.ico')
+def favicon():
+    images_dir = os.path.join(app.static_folder, 'images')
+    return send_from_directory(images_dir, 'favicon.svg', mimetype='image/svg+xml')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', profile=PROFILE_DATA), 404
@@ -587,9 +624,12 @@ def page_not_found(e):
 def server_error(e):
     return render_template('500.html', profile=PROFILE_DATA), 500
 
-# Initialize the database on any startup path (script, gunicorn, WSGI, tests)
-with app.app_context():
-    init_db()
+# Initialize the database on startup (resilient for serverless environments)
+try:
+    with app.app_context():
+        init_db()
+except Exception as e:
+    app.logger.warning(f"Database auto-initialization deferred: {e}")
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

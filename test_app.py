@@ -91,6 +91,18 @@ class PortfolioAppTestCase(unittest.TestCase):
         response = self.client.get('/download-resume')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.mimetype, 'application/pdf')
+        response.close()
+
+    def test_favicon_route(self):
+        response = self.client.get('/favicon.ico')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'svg', response.mimetype.encode())
+        response.close()
+
+    def test_serverless_entrypoint_import(self):
+        from api.index import app as vercel_app
+        self.assertIsNotNone(vercel_app)
+        self.assertEqual(vercel_app.name, 'app')
 
     def test_404_error_page(self):
         response = self.client.get('/invalid-page-does-not-exist')

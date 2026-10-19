@@ -31,8 +31,13 @@ Personal Digital Portfolio/
 │
 ├── app.py                      # Flask Application, Routes, SQLite DB Initialization, API Endpoints
 ├── requirements.txt            # Python Dependencies (Flask, reportlab)
+├── vercel.json                 # Vercel Production Deployment & Routing Configuration
 ├── generate_resume_pdf.py      # Automated Resume PDF Generator
 ├── README.md                   # Technical Documentation & Instructions
+├── test_app.py                 # Comprehensive Automated Test Suite
+│
+├── api/
+│   └── index.py                # Serverless Function WSGI Entrypoint for Vercel
 │
 ├── database/
 │   └── portfolio.db            # SQLite Database (Stores contact submissions & messages)
@@ -51,7 +56,10 @@ Personal Digital Portfolio/
     ├── js/
     │   └── script.js           # Navigation, Typing Animation, Filter Tabs, Modal Loader, Contact API
     ├── images/
+    │   ├── profile.jpg         # Developer photo
     │   ├── profile.svg         # High-resolution developer profile badge
+    │   ├── favicon.svg         # Monogram SVG favicon
+    │   ├── certificates/       # High-resolution academic & industry certificates
     │   ├── smartpos.svg        # SmartPOS POS terminal vector graphic
     │   ├── elara.svg           # ELARA AI neural core illustration
     │   ├── smartbin.svg        # Smart Bin IoT graphic
@@ -93,6 +101,29 @@ Personal Digital Portfolio/
    ```
    http://127.0.0.1:5000
    ```
+
+---
+
+## 🌐 Deploying to Vercel
+
+This repository is pre-configured for zero-configuration serverless deployment on [Vercel](https://vercel.com):
+
+1. **Commit and push changes to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Prepare portfolio for Vercel deployment"
+   git push origin main
+   ```
+2. **Import repository into Vercel**:
+   - Go to [vercel.com](https://vercel.com) and log in with your GitHub account.
+   - Click **Add New...** → **Project**.
+   - Select `personal-digital-portfolio` from your GitHub repositories.
+3. **Environment Variables (Recommended)**:
+   - Expand the **Environment Variables** panel in Vercel.
+   - Add `SECRET_KEY` with a strong random string (e.g. `gertos-portfolio-live-2026`).
+4. **Deploy**:
+   - Click **Deploy**. Vercel will build the serverless Python functions and deploy your static assets to Edge CDN.
+   - Your live public URL (e.g., `https://personal-digital-portfolio.vercel.app`) will be available immediately!
 
 ---
 

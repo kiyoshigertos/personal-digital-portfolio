@@ -21,6 +21,9 @@ env/
 venv/
 ENV/
 
+# Vercel deployment cache & metadata
+.vercel/
+
 # IDE & OS files
 .vscode/
 .idea/
